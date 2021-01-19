@@ -26,6 +26,11 @@ export class ClientesComponent implements OnInit, AfterViewInit {
   constructor(private cS : ClienteService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
   
   @ViewChild(MatSort) sort!: MatSort;
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

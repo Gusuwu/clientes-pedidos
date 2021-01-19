@@ -3,6 +3,15 @@ table {
     margin:1rem auto;
  }
 
+ mat-form-field{
+    width: 90%;
+    margin:1rem auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+ }
+
+
  .contenedor {
     display: flex;
     flex-direction: column;

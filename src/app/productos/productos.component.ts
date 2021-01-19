@@ -29,6 +29,11 @@ export class ProductosComponent implements OnInit, AfterViewInit {
   //atributo donde almaceno los nombres para las propiedades de las columnas en matTable
   columnas: string[] = ['prodId', 'prodDescripcion', 'prodPrecio', 'acciones']; 
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
