@@ -21,7 +21,6 @@ export class ClientesComponent implements OnInit {
 
   columnas : string[] = ['id', 'nombre', 'direccion', 'editar', 'borrar'];
 
-
   ngOnInit(): void {
 
     this.form = this.formBuilder.group({
