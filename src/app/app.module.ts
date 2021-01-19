@@ -16,7 +16,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import {MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmarComponent } from './confirmar/confirmar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     ProductosComponent,
     ClientesComponent,
-    PedidosComponent
+    PedidosComponent,
+    ConfirmarComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +38,14 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+
     MatButtonModule,
     MatCardModule,
     MatTableModule,
+    MatFormFieldModule,
     MatInputModule,
+    MatSortModule,
+    MatDialogModule,
     MatIconModule
 
   ],

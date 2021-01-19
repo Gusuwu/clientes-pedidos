@@ -1,26 +1,29 @@
 <div *ngIf="!mostrarForm">
-  <table mat-table [dataSource]="productos" class="mat-elevation-z8" >
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
 
-    <ng-container matColumnDef="id">
+    <ng-container matColumnDef="prodId">
       <th mat-header-cell *matHeaderCellDef> ID </th>
       <td mat-cell *matCellDef="let producto"> {{producto.prodId}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="descripcion">
+    <ng-container matColumnDef="prodDescripcion">
       <th mat-header-cell *matHeaderCellDef> Descripción </th>
       <td mat-cell *matCellDef="let producto"> {{producto.prodDescripcion}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="precio">
-      <th mat-header-cell *matHeaderCellDef> Precio </th>
+    <ng-container matColumnDef="prodPrecio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
       <td mat-cell *matCellDef="let producto"> {{producto.prodPrecio}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="editar">
+    <ng-container matColumnDef="acciones">
       <th mat-header-cell *matHeaderCellDef> Editar </th>
       <td mat-cell *matCellDef="let producto">
         <button mat-raised-button color="accent" focusable="false" (click)="edit(producto)">
           Editar
+        </button>
+        <button style="margin-left: 0.2cm;" mat-raised-button color="warn" focusable="false" (click)="delete(producto)">
+          Borrar
         </button>
       </td>
     </ng-container>
