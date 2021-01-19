@@ -20,16 +20,19 @@ export class ClienteService {
   get(): Observable<any> {
     return this.http.get(this.url);
   }
+  
   delete(id: number): Observable<any> {
     return this.http.delete
       (`${this.url}/${id}`)
       .pipe(catchError(this.handleError));
   }
+
   put(cliente: Cliente): Observable<any> {
     let payload = JSON.stringify(cliente);
     return this.http.put<Cliente>(this.url, payload)
       .pipe(catchError(this.handleError));
   }
+
   post(cliente: Cliente): Observable<any> {
     let payload = JSON.stringify(cliente);
     return this.http.post<Cliente>(this.url, payload)

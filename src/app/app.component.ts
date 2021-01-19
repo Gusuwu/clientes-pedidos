@@ -10,5 +10,4 @@ import { Producto } from './shared/producto';
 })
 export class AppComponent {
   title = 'pedidos';
-
 }

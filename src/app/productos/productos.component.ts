@@ -20,10 +20,7 @@ export class ProductosComponent implements OnInit {
   constructor( private productoService: ProductoService, private formBuilder: FormBuilder ) { }
 
   //atributo donde almaceno los nombres para las propiedades de las columnas en matTable
-  columnas: string[] = ['id', 'descripcion', 'precio', 'editar', 'borrar'];
-
-  //obtener una referencia a la tabla usando viewchild para acceder a la tabla y enviar datos a dataSource
- 
+  columnas: string[] = ['id', 'descripcion', 'precio', 'editar', 'borrar']; 
 
   ngOnInit(): void {
 

@@ -91,9 +91,6 @@ export class ClientesComponent implements OnInit {
 
   }
 
-  borrar( row : Cliente){
-  }
-
   editar( row : Cliente){
     this.mostrarForm = true;
   }

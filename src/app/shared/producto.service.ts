@@ -9,6 +9,7 @@ import { Producto } from './producto';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductoService {
 
   private url = 'http://localhost:8888/producto.php';
