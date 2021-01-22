@@ -71,6 +71,15 @@ export class PedidosComponent implements OnInit, AfterViewInit {
     )
   }
 
+  mostrar = false;
+  mostrarDetalle():Boolean{
+    if(this.pedidoSelected.pediId){
+      return this.mostrar = true;
+    }else{
+      return this.mostrar = false;
+    }
+  }
+
   actualizarTabla() {
     this.dataSource.data = this.pedidos;
     this.dataSource.sort = this.sort;

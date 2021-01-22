@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { PedidoDetallesComponent } from './pedido-detalle/pedido-detalle.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select';
     ProductosComponent,
     ClientesComponent,
     PedidosComponent,
+    PedidoDetallesComponent,
     ConfirmarComponent
   ],
   imports: [
