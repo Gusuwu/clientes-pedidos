@@ -7,7 +7,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmarComponent } from '../confirmar/confirmar.component';
 import { Cliente } from '../shared/cliente';
 import { ClienteService } from '../shared/cliente.service';
+import { DatosService } from '../shared/datos.service';
 import { Pedido } from '../shared/pedido';
+import { PedidoDetalleService } from '../shared/pedido-detalle.service';
 import { PedidoService } from '../shared/pedido.service';
 
 
@@ -36,7 +38,7 @@ export class PedidosComponent implements OnInit, AfterViewInit {
   constructor(private pedidoService: PedidoService,
     private clienteService: ClienteService,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, public datosService: DatosService, public detalleService : PedidoDetalleService) { }
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -84,6 +86,21 @@ export class PedidosComponent implements OnInit, AfterViewInit {
     this.dataSource.data = this.pedidos;
     this.dataSource.sort = this.sort;
   }
+
+  actualizarDetalle(id : number){
+    this.datosService.detalles.forEach( (dato) => { dato.detaPediId = id;
+      if(dato.detaBorrado){
+        this.detalleService.delete(dato.detaId).subscribe();
+      }else if(dato.detaId < 0){
+        this.detalleService.post(dato).subscribe();
+      }else (dato.detaId > 0 )
+        this.detalleService.put(dato).subscribe();
+      }
+   );
+    this.actualizarTabla();
+    this.mostrarFormulario = false;
+  }
+
 
   filter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -136,7 +153,8 @@ export class PedidosComponent implements OnInit, AfterViewInit {
     if (this.pedidoSelected.pediId) {
       this.pedidoService.put(this.pedidoSelected)
         .subscribe((pedido) => {
-          this.mostrarFormulario = false;
+          this.actualizarDetalle(pedido.pediId);
+          //this.mostrarFormulario = false;
         });
 
     } else {
@@ -144,8 +162,10 @@ export class PedidosComponent implements OnInit, AfterViewInit {
         .subscribe((pedido: Pedido) => {
           pedido.clienNombre = this.clientes.find(c => c.clienId == pedido.pediClienId)!.clienNombre;
           this.pedidos.push(pedido);
+          this.actualizarDetalle(pedido.pediId);
+          /*
           this.mostrarFormulario = false;
-          this.actualizarTabla();
+          this.actualizarTabla();*/
         });
 
     }
