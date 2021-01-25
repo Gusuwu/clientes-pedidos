@@ -138,9 +138,9 @@ export class PedidoDetallesComponent implements OnInit {
 
     this.seleccionado.prodDescripcion = this.productos.find(producto => producto.prodId == this.seleccionado.detaProdId)!.prodDescripcion;
 
-    if(this.seleccionado.detaId){
-      this.detalles.find(detalle => detalle.detaId == this.seleccionado.detaId);
-      this.datosService.detalles.push(this.seleccionado);
+    if(this.seleccionado.detaId > 0){
+      const elemento = this.detalles.find(detalle => detalle.detaId == this.seleccionado.detaId);
+      this.detalles.splice(this.seleccionado.detaId, 1, elemento!);
     }else{
       this.datosService.detalles.push(this.seleccionado);
     }
