@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ApiService } from '../core/api-service';
+import { AppConfigService } from '../core/config.service';
 
 
 import { Cliente } from './cliente';
@@ -9,13 +11,17 @@ import { Cliente } from './cliente';
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
+export class ClienteService extends ApiService<Cliente> {
 
-  private url = 'http://localhost:8888/cliente.php';
+  //private url = 'http://localhost:8888/cliente.php';
   
   constructor(
-    private http: HttpClient
-  ) { }
+    protected http: HttpClient,
+    protected app: AppConfigService
+  ) {
+    super("cliente.php", http, app);
+  }
+  /*
 
   get(): Observable<any> {
     return this.http.get(this.url);
@@ -45,5 +51,5 @@ export class ClienteService {
       return of(result as T);
     };
   }
-
+*/
 }

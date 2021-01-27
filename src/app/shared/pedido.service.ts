@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ApiService } from '../core/api-service';
+import { AppConfigService } from '../core/config.service';
 
 import { Pedido } from './pedido';
 
@@ -9,13 +11,16 @@ import { Pedido } from './pedido';
 @Injectable({
   providedIn: 'root'
 })
-export class PedidoService {
+export class PedidoService  extends ApiService<Pedido>{
 
-  private url = 'http://localhost:8888/pedido.php';
+  //private url = 'http://localhost:8888/pedido.php';
   constructor(
-    private http: HttpClient
-  ) { }
-
+    protected http: HttpClient,
+    protected app: AppConfigService
+  ) {
+    super("pedido.php", http, app);
+  }
+/*
   get(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.url)
       .pipe(catchError(this.handleError));
@@ -44,4 +49,5 @@ export class PedidoService {
     alert(err.statusText);
     return of([]);
   }
+  */
 }

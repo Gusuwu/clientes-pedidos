@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ApiService } from '../core/api-service';
+import { AppConfigService } from '../core/config.service';
 
 
 import { Producto } from './producto';
@@ -10,14 +12,15 @@ import { Producto } from './producto';
   providedIn: 'root'
 })
 
-export class ProductoService {
-
-  private url = 'http://localhost:8888/producto.php';
-  
+export class ProductoService extends ApiService<Producto>{
+  path = "producto.php";
   constructor(
-    private http: HttpClient
-  ) { }
-
+    protected http: HttpClient,
+    protected app: AppConfigService
+  ) {
+    super("producto.php", http, app);
+  }
+/*
   get(): Observable<any> {
     return this.http.get(this.url);
   }
@@ -46,5 +49,5 @@ export class ProductoService {
       return of(result as T);
     };
   }
-
+*/
 }

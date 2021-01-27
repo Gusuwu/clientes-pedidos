@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AppConfigService } from './core/config.service';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -59,8 +60,14 @@ import { PedidoDetallesComponent } from './pedido-detalle/pedido-detalle.compone
     MatIconModule
 
   ],
-  providers: [],
+  providers: [
+    AppConfigService,
+    { provide: APP_INITIALIZER, useFactory: loadConfig, deps: [AppConfigService], multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
+}
+export function loadConfig(config: AppConfigService) {
+  return () => config.load();
 }

@@ -56,7 +56,7 @@ export class PedidoDetallesComponent implements OnInit {
     });
 
     // Carga de pedidos detalles
-    this.pedidoDetalleService.get(this.pediId).subscribe(
+    this.pedidoDetalleService.get(`detaPediId=${this.pediId}`).subscribe(
       (pedidoDetalles) => {
         this.datosService.detalles = pedidoDetalles;
         this.actualizarTabla();
